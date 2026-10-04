@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 
-
 <html>
 <head> 
 
 <meta charset = "UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name= "viewport" content="width-device-width, initial-scale=1.0"> 
+<meta name= "viewport" content="width=device-width, initial-scale=1.0"> 
 
 <title> Zonacomex </title>
 
 <link rel="stylesheet" href="style1.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-
 
 </head>
 
@@ -27,29 +25,127 @@
             
 </label> <!--necesitamos de este label para que el menú sea responsive, este es el único truco-->
 
-<a href="#" class="enlace">
+<a href="index.html" class="enlace">
 <img src="imagenes/logo.jpg" alt="" class="logo">
 </a>
 <ul>
 <li><a href="menu_responsiveStyle1.html" title="style"> Inicio </a></li>
 <li><a href="menu_responsive_repositorioStyle1.html"> Repositorio </a></li>
 <li><a href="menu_responsive_serviciosStyle1.html"> Servicios </a></li>
-<li><a href="menu_responsive_registroStyle1.html"> Registro </a></li>
-<li id="lang"><a href="menu_responsiveStyle1.html" title="style"> Español </a></li>
-<li id="lang"><a href="menu_responsiveStyle1.html" title="style"> English </a></li>
+<li><a href="menu_responsive_registroStyle1.html"> Registro  </a> </li>
+<li class="lang"><a href="web1.html" title="style">  Español </a></li>
+<li class="lang"><a href="web2.html" title="style">  English </a> </li> <!--texto editable--> 
 </ul>
 
 </nav>
 
 <section>
 
-   
-     <i class='fas fa-search' style='font-size:36px'> </i><input type="search" placeholder="Busca en Zonacomex" id="inputBusqueda"/>
-
-
+    <div class="contenedor-busqueda">
+        <div class="search-box">
+            <i class='fas fa-search' style='font-size:24px'></i>
+            <input type="search" placeholder="Busca en Zonacomex" id="inputBusqueda" autocomplete="off"/>
+        </div>
+        
+        <!-- Contenedor desplegable para las sugerencias de búsqueda -->
+        <div id="resultadosBusqueda" class="resultados-busqueda"></div>
+    </div>
 
 </section>
+
+<script>
+  const paginasComex = [
+    {
+      titulo: "Inicio",
+      url: "menu_responsiveStyle1.html",
+      descripcion: "Página principal de Zonacomex, comercio exterior y servicios.",
+      tags: ["inicio", "home", "bienvenida", "zonacomex", "principal"]
+    },
+    {
+      titulo: "Repositorio",
+      url: "menu_responsive_repositorioStyle1.html",
+      descripcion: "Accede a documentos, normativa, certificados y descargas.",
+      tags: ["repositorio", "documentos", "arancel", "normativa", "descargas", "pdf", "aduanas"]
+    },
+    {
+      titulo: "Servicios",
+      url: "menu_responsive_serviciosStyle1.html",
+      descripcion: "Consultoría en importaciones, exportaciones y gestión aduanera.",
+      tags: ["servicios", "asesoria", "importacion", "exportacion", "logistica", "fletes"]
+    },
+    {
+      titulo: "Registro",
+      url: "menu_responsive_registroStyle1.html",
+      descripcion: "Formulario de registro para usuarios de Zonacomex.",
+      tags: ["registro", "crear cuenta", "login", "formulario", "perfil"]
+    },
+    {
+      titulo: "Español",
+      url: "web1.html",
+      descripcion: "Cambiar idioma a Español.",
+      tags: ["espanol", "spanish", "idioma", "lang"]
+    },
+    {
+      titulo: "English",
+      url: "web2.html",
+      descripcion: "Switch language to English.",
+      tags: ["english", "ingles", "idioma", "lang"]
+    }
+  ];
+
+  const inputBusqueda = document.getElementById('inputBusqueda');
+  const contenedorResultados = document.getElementById('resultadosBusqueda');
+
+  inputBusqueda.addEventListener('input', function () {
+    const termino = this.value.toLowerCase().trim();
+
+    if (termino === '') {
+      contenedorResultados.style.display = 'none';
+      contenedorResultados.innerHTML = '';
+      return;
+    }
+
+    const resultados = paginasComex.filter(pagina => {
+      const enTitulo = pagina.titulo.toLowerCase().includes(termino);
+      const enDescripcion = pagina.descripcion.toLowerCase().includes(termino);
+      const enTags = pagina.tags.some(tag => tag.toLowerCase().includes(termino));
+
+      return enTitulo || enDescripcion || enTags;
+    });
+
+    mostrarResultados(resultados);
+  });
+
+  function mostrarResultados(resultados) {
+    contenedorResultados.innerHTML = '';
+
+    if (resultados.length === 0) {
+      contenedorResultados.innerHTML = '<div class="sin-resultados">No se encontraron resultados relacionados</div>';
+    } else {
+      resultados.forEach(pagina => {
+        const enlace = document.createElement('a');
+        enlace.href = pagina.url;
+        enlace.className = 'item-resultado';
+
+        enlace.innerHTML = `
+          <span class="titulo">${pagina.titulo}</span>
+          <span class="descripcion">${pagina.descripcion}</span>
+          <span class="tags"><i class="fas fa-tags"></i> ${pagina.tags.join(', ')}</span>
+        `;
+
+        contenedorResultados.appendChild(enlace);
+      });
+    }
+
+    contenedorResultados.style.display = 'block';
+  }
+
+  document.addEventListener('click', function (e) {
+    if (!inputBusqueda.contains(e.target) && !contenedorResultados.contains(e.target)) {
+      contenedorResultados.style.display = 'none';
+    }
+  });
+</script>
+
 </body>
 </html>
-
-

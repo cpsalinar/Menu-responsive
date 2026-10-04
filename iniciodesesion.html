@@ -1,31 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
-<head> 
+<head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-
-  <title>Zonacomex - Crea tu cuenta</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sesión - Zonacomex</title>
+  
+  <!-- Estilos CSS -->
   <link rel="stylesheet" href="style1.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <style>
-    .fa {
-      cursor: pointer;
-    }
-    
-    #verContrasena {	
-      margin: 1%; 
-      display: none;
-    }
-    
-    #verContrasenaTag {
-      font-size: 12px;
-    }
-  </style>
+  
+  <!-- Íconos de FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
-
 <body>
 
   <nav>
@@ -42,9 +27,9 @@
       <li><a href="index.html">Inicio</a></li>
       <li><a href="menu_responsive_repositorioStyle1.html">Repositorio</a></li>
       <li><a href="menu_responsive_serviciosStyle1.html">Servicios</a></li>
-      <li><a href="menu_responsive_registroStyle1.html" class="active">Registro</a></li>
-      <li id="lang"><a href="web1.html">Español</a></li>
-      <li id="lang"><a href="web2.html">English</a></li>
+      <li><a href="menu_responsive_registroStyle1.html">Registro</a></li>
+      <li><a href="#">Español</a></li>
+      <li><a href="#">English</a></li>
     </ul>
   </nav>
 
@@ -53,7 +38,7 @@
       <table> 
         <tr>
           <td>
-            <h2 id="titulo3">Crea tu cuenta</h2>
+            <h2 id="titulo3">Ingresa a tu cuenta</h2>
           </td>
         </tr>
 
@@ -77,18 +62,13 @@
 
         <tr>
           <td>
-            <input class="celda" type="password" name="contrasena" id="contrasena" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,8}" placeholder="Ingrese una contraseña" title="Ingrese una contraseña de 8 caracteres que contenga a lo menos un número, una letra mayúscula y una letra minúscula" required onDblClick="muestraContrasena()">
+            <input class="celda" type="password" name="contrasena" id="contrasena" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,8}" placeholder="Ingrese una contraseña" title="Ingrese una contraseña de 8 caracteres que contenga a lo menos un número, una letra mayúscula y una letra minúscula" required ondblclick="muestraContrasena()">
           </td>
         </tr>
         
         <tr>
           <td>
             <input type="checkbox" name="verContrasena" id="verContrasena" onclick="muestraContrasena()">
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
             <label for="verContrasena" id="verContrasenaTag">Ver contraseña <i class="fa fa-eye"></i></label>
           </td>
         </tr>
@@ -96,65 +76,54 @@
         <tr>
           <td>
             <input class="casilla" type="checkbox" name="casilla" id="casilla" required>
-            <label for="casilla" id="casilla2">Estoy de acuerdo con <a href="#">Terminos y condiciones</a></label>
+            <label for="casilla" id="casilla2">Estoy de acuerdo con <a href="#">Términos y condiciones</a></label>
           </td>
         </tr>
 
         <tr>
           <td>
-            <input class="boton" type="submit" name="boton" id="boton" value="Registrar">
+            <input class="boton" type="submit" name="boton" id="boton" value="Iniciar sesión">
           </td>
         </tr>
       </table>
     </form>
 
     <br>
-    <p id="cuentaprevia"><a href="iniciodesesion.html">&iquest;Ya tienes una cuenta?</a></p>
-
-    <p id="fechacorta">Fecha de hoy: <span id="fechaSpan"></span></p>
+    <p id="cuentaprevia"><a href="menu_responsive_registroStyle1.html">&iquest;No tienes una cuenta? Regístrate aquí</a></p>
+    <p id="fechacorta">Fecha de hoy: <span id="fechaActual"></span></p>
 
     <script>
-      // Muestra la contraseña al marcar el checkbox o hacer doble clic
+      // Fecha actual dinámica
+      document.getElementById('fechaActual').textContent = new Date().toDateString();
+
+      // Mostrar / ocultar contraseña
       const muestraContrasena = () => {
         let input = document.querySelector("#contrasena");
         input.type = input.type === "password" ? "text" : "password";
       };
 
-      // Fecha de hoy dinámica
-      document.getElementById('fechaSpan').textContent = new Date().toDateString();
-
-      // Envío de datos al backend en server.js
+      // Envío de formulario de inicio de sesión
       document.getElementById('miformulario').addEventListener('submit', async (event) => {
         event.preventDefault();
 
-        const datosUsuario = {
-          nombre: document.getElementById('nombre').value,
-          apellido: document.getElementById('apellido').value,
+        const datosLogin = {
           email: document.getElementById('email').value,
-          pantalla: `${window.screen.width}x${window.screen.height}`,
-          idioma: navigator.language || navigator.userLanguage,
-          zonaHoraria: Intl.DateTimeFormat().resolvedOptions().timeZone
+          contrasena: document.getElementById('contrasena').value
         };
 
         try {
           const response = await fetch('/api/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(datosUsuario)
+            body: JSON.stringify(datosLogin)
           });
 
           const resultado = await response.json();
 
           if (response.ok && resultado.success) {
-            alert(`¡Registro exitoso!\nTu ID asignado es: #${resultado.userId}`);
-            event.target.reset();
+            alert('¡Inicio de sesión exitoso!');
           } else {
-            if (resultado.correoExiste) {
-              alert('Este correo ya está registrado. Serás redirigido para iniciar sesión.');
-              window.location.href = 'iniciodesesion.html';
-            } else {
-              alert(`Error: ${resultado.error || 'No se pudo guardar el registro'}`);
-            }
+            alert(`Error: ${resultado.error || 'Credenciales incorrectas'}`);
           }
         } catch (error) {
           console.error('Error al conectar con el servidor:', error);
