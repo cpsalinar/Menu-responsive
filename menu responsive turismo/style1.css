@@ -1,0 +1,255 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{
+	Padding:0%;
+	margin:0;
+	text-decoration: none;
+	list-style: none;
+	box-sizing: border-box;
+	
+	}
+	
+nav{
+	background:	#6CF;
+	background-position:center;
+	background-size:cover;
+	height:80px;
+	width: 100%;
+}
+
+ 
+.enlace{
+	position:	absolute;
+	padding: 20px 50px;
+}
+
+.logo{
+	height:40px;
+	}
+
+
+nav ul{
+	float: right;
+	margin-right: 20px;	
+	margin-left:5px;
+}
+
+nav ul li{
+	display: inline-block;
+	line-height: 80px;
+	margin: 0 5px;	
+}
+
+nav ul li a{
+	
+	color:	#009;
+	font-weight:900;
+	font-size:16px;
+	padding: 7px 13px;
+	border-radius: 3px;
+	text-transform: uppercase;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	
+}
+
+li a.active, li a:hover{/*fondo listas*/
+	
+	background-color:	#2D96FF;
+	transition: .5s;
+}
+
+/*#lang{	background-color:	#5ACF78;
+		
+}
+*/
+
+.checkbtn{
+	
+	font-size: 30px;
+	color:	#009;
+	float:right;
+	line-height: 80px;
+	margin-right: 40px;
+	cursor: pointer;
+	display: none;
+}
+#check{
+	display:none;
+}
+
+section{
+	background:	url(imagenes/IA%20images/backgroundComexMorningcentered.jpeg);
+	background-size: cover;
+	background-position: center center;
+	height: calc(100vh - 80px); /*AQUI SACAMOS EL SCROLLER, LE RESTAMOS LOS 80px del NAV*/	
+}
+section{
+	Text-align: center;
+	background-color:	#FFF;
+} 
+	
+
+#buscador{	float: center;
+						}
+						
+#fechacorta{text-align:center;
+}
+
+
+/* FORMULARIO*/
+
+#miformulario{width:100%; margin:auto;}
+
+
+table{background-image:	url(imagenes/nubes.png);
+	  Text-align: center;
+	  margin:auto;
+	  min-width: 18%;	 
+	  padding: 3%;
+	  font-family:	"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	  border:groove;
+	  border-radius: 10px;
+	  box-shadow: 7px 13px 37px #000;	
+}
+
+
+.registro{
+	
+	width: 60px;
+	background: #24303c;
+	padding: 30px;
+	margin:auto;
+	margin-top: 100px;
+	border-radius: 4px;
+	font-family: 'Calibri';
+	color:white;
+	box-shadow: 7px 13px 37px #000;
+}
+
+.registro h2{ 
+font-size: 22px;
+margin-bottom: 20px;
+}
+
+.celda{
+	min-width: 85%;
+	background:	#FFF;
+	padding:3%;
+	border-radius: 4px;
+	margin:3%;
+	border: 1px solid #333;
+	font-family: 'calibri';
+	font-size: 18px;
+	align-items:center;
+}
+/*
+
+.registro p{
+	height: 40px;
+	text-align:center;
+	font-size:18px;
+	line-height: 40px;
+}
+
+.registro a{
+	color:white;
+	text-decoration: none;
+}
+
+.registro a:hover{
+	color:white;
+	text-decoration: underline;
+}
+
+*/	
+
+
+
+.casilla{	
+	margin: 5%;}
+
+
+
+ 
+.boton{ 
+	width: 50%;
+	background:	#0CF;
+	border: none;
+	padding:12px;
+	color:white;
+	margin: 5% 0;
+	font-size: 16px;
+	}
+
+#cuentaprevia{font-size:24px;color:#999;	background-color:#6CF;}	
+	
+#titulo2{ 
+	  color:	#006;	
+	  font-size: 40px;
+	  Text-align: center;
+	  }
+
+#titulo3{ 
+	  color:	#666;
+	  font-size: 40px;
+	  Text-align: center;
+	  }
+
+
+
+
+
+/*footer{	margin: 2%; color:	#333; background-color:	#09F; text-align: center; font-size: 30px; clear: both;padding-top: 25px auto;position:relative; }*/
+	
+/*Responsive tableta dispositivo 952px*/
+
+@media (max-width: 952px){
+	.enlace{
+		padding-left: 20px;
+	}
+
+	nav ul li a{
+		font-size: 16px;
+	}
+}
+
+/*Responsive dispositivos pequeños de hasta 858px */
+
+@media (max-width: 858px){
+	.checkbtn{
+		display:block;
+	}
+
+	nav ul{
+		position:fixed;
+		width: 100%;
+		height: 100vh;
+		background:#39F;
+		top: 80px;
+		left: -100%;
+		text-align: center;
+		transition: all .5s;
+	}
+
+	nav ul li{
+		display: block;
+		margin:50px 0;
+		line-height: 30px;
+	}
+
+	nav ul li a{
+		font-size: 20px;
+	}
+
+	nav ul li a:hover, nav ul li a.active{
+		background:none;
+		color:	#0F0;
+	}
+
+	#check:checked ~ ul{
+		left:0;
+	}
+}
+
+	

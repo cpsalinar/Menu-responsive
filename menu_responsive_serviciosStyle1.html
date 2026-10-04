@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+
+<head> 
+
+<meta charset = "UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name= "viewport" content="width-device-width, initial-scale=1.0"> 
+
+<title> Zonacomex </title>
+
+<link rel="stylesheet" href="style1.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+
+#titulo_planes{align-self: center; color:blue;font-family:"Courier New", Courier, monospace;
+				}
+.volantes{
+	    font-family:Verdana, Geneva, sans-serif; 
+		background-position: center;
+		background-size: 100%;
+		background-repeat: no-repeat;
+		background-position: relative;	
+		display:inline-block;	
+		align-items: center;  
+		padding-top: 25% ;
+	
+		  margin:3% auto;
+		  max-width:   ;
+		  max-height:  ;
+		  min-width:   ;
+		  min-height:  ;
+
+		  border:groove;
+		  border-radius: 10px;
+		  box-shadow: 7px 13px 37px #999;	
+		  	
+		  
+} 
+    	
+
+#volante1{background-image: url("imagenes/promo1.jpg");
+		}
+
+
+#volante2{background-image: url("imagenes/promo2.jpg");
+		}
+
+#volante3{background-image: url("imagenes/promo3.jpg");
+		}
+
+#volante4{background-image: url("imagenes/promo4.jpg");
+		}
+
+
+ 
+	  
+	 
+	
+
+.seleccionar{background-color: beige;
+	        color:blue;
+			border-radius: 5px;
+			margin:auto;
+			font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+			font-weight: bolder;
+			border-color: rgb(158, 206, 206);
+
+			 
+
+		  max-width:    ;
+		  max-height:  ;
+		  min-width:    ;
+		  min-height:  ;
+
+			
+}
+		
+					
+
+
+</style>
+</head>
+
+<body>
+
+<nav>
+<input type="checkbox" id="check">
+<label for="check" class="checkbtn">
+			
+<i class="fa-solid fa-bars"></i>
+            
+</label> <!--necesitamos de este label para que el menú sea responsive, este es el único truco-->
+
+<a href="#" class="enlace">
+<img src="imagenes/logo.jpg" alt="" class="logo">
+</a>
+<ul>
+<li><a href="menu_responsiveStyle1.html" title="style"> Inicio </a></li>
+<li><a href="menu_responsive_repositorioStyle1.html"> Repositorio </a></li>
+<li><a href="menu_responsive_serviciosStyle1.html"> Servicios </a></li>
+<li><a href="menu_responsive_registroStyle1.html"> Registro </a></li>
+<li id="lang"><a href="menu_responsiveStyle1.html" title="style"> Español </a></li>
+<li id="lang"><a href="menu_responsiveStyle1.html" title="style"> English </a></li>
+</ul>
+
+</nav>
+
+<section>
+
+
+
+<br>
+<h1 id="titulo_planes"> Elige entre nuestros planes</h1>
+
+
+<table class= "volantes" id="volante1"> <tr><td> <input class="seleccionar" type="button" id="Elegir1"  value="Elegir"  /></td></tr></table>
+  
+<table class= "volantes" id="volante2"> <tr><td> <input class="seleccionar" type="button" id="Elegir2" value="Elegir"  /></td></tr></table>
+
+<table class= "volantes" id="volante3"> <tr><td> <input class="seleccionar" type="button" id="Elegir3" value="Elegir"  /></td></tr></table>
+
+<table class= "volantes" id="volante4"> <tr><td> <input class="seleccionar" type="button" id="Elegir4" value="Elegir"  /></td></tr></table>
+
+
+</section>
+
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+<title> Zonacomex </title>
+
+<link rel="stylesheet" href="style1.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+.fa {
+  /*transform: translateX(-40px);*/
+  cursor:pointer;
+}
+
+#verContrasena{ 
+  margin:1%; display:none;
+}
+
+#verContrasenaTag{
+  font-size:12px;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<input type="checkbox" id="check">
+<label for="check" class="checkbtn">
+  <i class="fa-solid fa-bars"></i>
+</label> <!--necesitamos de este label para que el menú sea responsive, este es el único truco-->
+
+<a href="#" class="enlace">
+<img src="imagenes/logo.jpg" alt="" class="logo">
+</a>
+<ul>
+<li><a href="menu_responsive_Contacto.html" title="style"> Inicio </a></li>
+<li><a href="#"> Repositorio </a></li>
+<li><a href="#"> Servicios </a></li>
+<li><a href="#"> Registro  </a> </li>
+<li id="lang" ><a href="web1.html"title="style">  Español </a></li>
+<li id="lang" ><a href="web2.html"title="style">  English </a> </li> <!--texto editable--> 
+</ul>
+</nav>
+
+<section>
+
+<form name="miformulario" id="miformulario" action="/api/login" method="POST" autocomplete="on">
+
+<table> 
+<h2 id="titulo3"> Crea tu cuenta </h2>
+
+<tr><td>
+ <input class="celda" type="text" name="nombre" id="nombre" placeholder="Ingrese su Nombre" required autofocus ></td></tr>
+
+<tr><td>
+  <input class="celda" type="text" name="apellido" id="apellido" placeholder="Ingrese su Apellido" required ></td></tr>
+
+<tr><td>
+<input class="celda" type="email" name="email" id="email" placeholder="Ingrese su Email" required multiple ></td></tr>
+
+<tr><td>
+  <input class="celda" type="password" name="contrasena" id="contrasena" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,8}" placeholder="Ingrese una contraseña" title="Ingrese una contraseña de 8 caracteres que contenga a lo menos un número, una letra mayúscula y una letra minúscula" required onDblClick="muestraContrasena()" >
+</td></tr>
+     
+<tr><td>
+  <input type="checkbox" name="verContrasena" id="verContrasena" onclick="muestraContrasena()">
+</td></tr>
+  
+<tr><td>  
+<label for="verContrasena" id="verContrasenaTag">Ver contraseña <i class="fa fa-eye"></i></label>
+</td></tr>
+
+<script>
+const muestraContrasena=()=> {
+  /*aqui convierte el input type password en texto, de este modo se muestra lo que el usuario escribe*/
+  let input = document.querySelector("#contrasena")
+  if (input.type ==="password") {
+    input.type ="text"
+  } else {
+    input.type = "password"
+  }
+}
+</script>
+
+<tr><td>
+<input class="casilla" type="checkbox" name="casilla" id="casilla" required >
+<label for="casilla" id="casilla2"> Estoy de acuerdo con <a href="#"> Terminos y condiciones </a></label>
+</td></tr>
+
+<tr><td>
+<input class="boton" type="submit" name="boton" id="boton" value="Registrar" >
+</td></tr>
+
+</table>
+</form>
+
+<br>
+
+<p id="cuentaprevia"> <a href="#"> &iquest;Ya tienes una cuenta? </a></p>
+
+<script> 
+function hoydia(){
+  var hoy= new Date();
+  document.write(hoy.toDateString());
+}
+
+// Conexión con server.js para guardar en logins.csv
+const formulario = document.getElementById('miformulario');
+
+formulario.addEventListener('submit', async (event) => {
+  event.preventDefault(); // Evita recargar la página
+
+  const datosUsuario = {
+    nombre: document.getElementById('nombre').value,
+    apellido: document.getElementById('apellido').value,
+    email: document.getElementById('email').value
+  };
+
+  try {
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(datosUsuario)
+    });
+
+    const resultado = await response.json();
+
+    if (response.ok && resultado.success) {
+      alert(`¡Registro exitoso!\nTu ID asignado es: #${resultado.userId}`);
+      formulario.reset();
+    } else {
+      alert(`Error: ${resultado.error || 'No se pudo guardar el registro'}`);
+    }
+  } catch (error) {
+    console.error('Error al conectar con el servidor:', error);
+    alert('No se pudo conectar con el servidor backend.');
+  }
+});
+</script>
+
+<p id="fechacorta"> Fecha de hoy <script>hoydia();</script> </p>
+
+</section>
+</body>
+</html>

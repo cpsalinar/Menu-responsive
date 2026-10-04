@@ -1,0 +1,108 @@
+<section>
+  <form name="miformulario" id="miformulario" action="/api/login" method="POST" autocomplete="on">
+    <table> 
+      <h2 id="titulo3">Crea tu cuenta</h2>
+
+      <tr>
+        <td>
+          <input class="celda" type="text" name="nombre" id="nombre" placeholder="Ingrese su Nombre" required autofocus>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <input class="celda" type="text" name="apellido" id="apellido" placeholder="Ingrese su Apellido" required>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <input class="celda" type="email" name="email" id="email" placeholder="Ingrese su Email" required multiple>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <input class="celda" type="password" name="contrasena" id="contrasena" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,8}" placeholder="Ingrese una contraseña" title="Ingrese una contraseña de 8 caracteres que contenga a lo menos un número, una letra mayúscula y una letra minúscula" required onDblClick="muestraContrasena()">
+        </td>
+      </tr>
+      
+      <tr>
+        <td>
+          <input type="checkbox" name="verContrasena" id="verContrasena" onclick="muestraContrasena()">
+        </td>
+      </tr>
+      
+      <tr>
+        <td>  
+          <label for="verContrasena" id="verContrasenaTag">Ver contraseña <i class="fa fa-eye"></i></label>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <input class="casilla" type="checkbox" name="casilla" id="casilla" required>
+          <label for="casilla" id="casilla2">Estoy de acuerdo con <a href="#">Términos y condiciones</a></label>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <input class="boton" type="submit" name="boton" id="boton" value="Registrar">
+        </td>
+      </tr>
+    </table>
+  </form>
+
+  <br>
+  <p id="cuentaprevia"><a href="#">&iquest;Ya tienes una cuenta?</a></p>
+
+  <script>
+    function hoydia() {
+      var hoy = new Date();
+      document.write(hoy.toDateString());
+    }
+
+    const muestraContrasena = () => {
+      let input = document.querySelector("#contrasena");
+      if (input.type === "password") {
+        input.type = "text";
+      } else {
+        input.type = "password";
+      }
+    };
+
+    // Conexión backend para guardar en logins.csv
+    document.getElementById('miformulario').addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const datosUsuario = {
+        nombre: document.getElementById('nombre').value,
+        apellido: document.getElementById('apellido').value,
+        email: document.getElementById('email').value
+      };
+
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(datosUsuario)
+        });
+
+        const resultado = await response.json();
+
+        if (response.ok && resultado.success) {
+          alert(`¡Registro exitoso!\nTu ID asignado es: #${resultado.userId}`);
+          event.target.reset();
+        } else {
+          alert(`Error: ${resultado.error || 'No se pudo guardar el registro'}`);
+        }
+      } catch (error) {
+        console.error('Error al conectar con el servidor:', error);
+        alert('No se pudo conectar con el servidor backend.');
+      }
+    });
+  </script>
+
+  <p id="fechacorta">Fecha de hoy <script>hoydia();</script></p>
+</section>

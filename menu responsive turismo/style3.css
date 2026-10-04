@@ -1,0 +1,163 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{background-color:	#FFF; }
+
+
+
+header{max-width: 100%;
+  height: auto; text-align: center;  }
+
+img{ max-width: 100%;
+  height: auto;Text-align: center;
+	  border-radius: 10px;}
+
+#idioma{text-align: right; margin-right:5%;}
+#lang{
+	margin: 2%;
+	font-size: 20px;
+	display: inline;
+	color: #06F;
+	font-family: "MS Serif", "New York", serif;}
+
+nav{text-align: center;
+	letter-spacing:	normal;
+	background-color:	transparent;}
+	
+#linav{
+	margin: 2%;
+	display: inline;
+	color: #666;
+	font-size: 35px;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	text-decoration:none;}
+	
+section{
+	Text-align: center;
+	background-color:	#FFF;
+} 
+	
+
+#buscador{	float: center;
+						}
+						
+#fechacorta{text-align:center;
+}
+
+#miformulario{width:100%; margin:auto;}
+
+
+table{background-image:url(imagenes/nubes.png);
+	  Text-align: center;
+	  margin:auto;
+	  min-width: 18%;	 
+	  padding: 3%;
+	  font-family:	"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	  border:groove;
+	  border-radius: 10px;
+	  box-shadow: 7px 13px 37px #000;	
+}
+
+
+
+
+	
+*{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+}
+
+.registro{
+	
+	width: 60px;
+	background: #24303c;
+	padding: 30px;
+	margin:auto;
+	margin-top: 100px;
+	border-radius: 4px;
+	font-family: 'Calibri';
+	color:white;
+	box-shadow: 7px 13px 37px #000;
+}
+
+.registro h2{ 
+font-size: 22px;
+margin-bottom: 20px;
+}
+
+.celda{
+	min-width: 85%;
+	background:	#FFF;
+	padding:3%;
+	border-radius: 4px;
+	margin:3%;
+	border: 1px solid #333;
+	font-family: 'calibri';
+	font-size: 18px;
+}
+/*
+
+.registro p{
+	height: 40px;
+	text-align:center;
+	font-size:18px;
+	line-height: 40px;
+}
+
+.registro a{
+	color:white;
+	text-decoration: none;
+}
+
+.registro a:hover{
+	color:white;
+	text-decoration: underline;
+}
+
+*/	
+
+
+
+.casilla{	
+	margin: 5%;}
+
+
+
+
+.boton{ 
+	width: 50%;
+	background:	#0CF;
+	border: none;
+	padding:12px;
+	color:white;
+	margin: 5% 0;
+	font-size: 16px;
+	}
+
+#cuentaprevia{font-size:24px;}	
+	
+#titulo2{ 
+	  color:	#006;
+	  font-size: 40px;
+	  Text-align: center;
+	  }
+
+#titulo3{ 
+	  color:	#666;
+	  font-size: 25px;
+	  Text-align: center;
+	  }
+
+#parrafo{ 
+	color:	#666;
+	font-size: 30px; margin: auto 10%;
+	}
+
+#repolist{text-align: center;}
+
+video{border-radius: 10%;}
+
+
+footer{	margin: 2%; color:	#333; background-color:	#09F; text-align: center; font-size: 30px; clear: both;padding-top: 25px auto;position:relative; }
+	

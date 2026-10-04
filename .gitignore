@@ -1,0 +1,30 @@
+# Dependencias de Node.js (carpetas pesadas que no deben subirse)
+node_modules/
+
+# Archivos de resultados y reportes de Playwright
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Variables de entorno y datos sensibles / secretos
+.env
+.env.local
+.env.*.local
+
+# Archivos y cachés del sistema operativo
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Archivos de registros / logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logins.csv*
+
+# Configuraciones locales del editor
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
